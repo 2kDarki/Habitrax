@@ -112,16 +112,16 @@ def display(daily=0):
     ])
     
     if not daily:
-        print(label[1], trajectory)
-        print(f"{label[2]} {edge:.2f}%\n")
+        print(labels[1], trajectory)
+        print(f"{labels[2]} {edge:.2f}%\n")
         return
 
     for entry in data:
         date = timetools.timestamp(entry["Day"], 1)
         trajectory = "Headed for success" if entry["Edge"] >= 50 else "Headed for failure" 
-        print(label[0], date)
-        print(label[1], trajectory)
-        print(f"{label[2]} {entry['Edge']:.2f}%\n")
+        print(labels[0], date)
+        print(labels[1], trajectory)
+        print(f"{labels[2]} {entry['Edge']:.2f}%\n")
 
 
 def graph():
