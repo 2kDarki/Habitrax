@@ -132,7 +132,8 @@ Thank you for considering contributing! Here's a simple workflow:
 1. Fork the repo 
 2. Clone your fork: 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Habitrax.git cd Habitrax
+git clone https://github.com/YOUR_USERNAME/Habitrax.git 
+cd Habitrax
 ```
 
 - Create a branch for your changes: git checkout -b feat/my-feature 
