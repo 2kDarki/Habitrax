@@ -2,142 +2,114 @@
 
 *A terminal-based personal development tracker combining habit building, productivity, and introspection into one unified system.*
 
----
+ --- 
 
-## What is Habitrax?
+## What is Habitrax? 
 
 Habitrax is a CLI app designed to help you:
 
-- Track your tasks, productivity, and self-discipline  
-- Reflect daily with randomized deep questions  
-- Monitor progress using gamified stats and leveling  
-- Build powerful habits using philosophies from:  
-  - Deep Work  
-  - Atomic Habits  
-  - Slight Edge  
-  - Think & Grow Rich  
-  - Shadow Work Journal  
+- Track your tasks, productivity, and self-discipline
+- Reflect daily with randomized deep questions 
+- Monitor progress using gamified stats and leveling 
+- Build powerful habits using philosophies from: 
+ - Deep Work
+ - Atomic Habits
+ - Slight Edge
+ - Think & Grow Rich
+ - Shadow Work Journal 
 
-> You don't just live life — you *level through it*.
+> You don't just live life — you *level through it*. 
 
----
+--- 
 
-## Philosophy
+## Quickstart
 
-Most productivity apps force structure on you.  
-Habitrax does the opposite — it's a *sandbox for your goals, actions, and reflections.*
+```
+git clone https://github.com/2kDarki/Habitrax.git 
+cd Habitrax 
+python run.py
+```
 
-- Every decision is a vote toward your future self  
-- Every session is data, analyzed and visualized for self-awareness  
-- You define your purpose, rules, and trajectory  
+> Requires Python 3.10+. 
+
+That's it — Habitrax runs out-of-the-box.
 
 ---
 
 ## Core Modules
 
-- *Session Logging* – Track tasks, time, focus, and productivity quality  
-- *Debrief* – Daily introspection with randomized deep questions
-- *Soul Work* – Gratitude, philosophy, and "Slight Edge" voting  
-- *Status Window* – Gamified dashboard for categories and missions
-- *Notebook* – Store insights, mantras, or journal entries  
-- *Statistics* – Filter and visualize productivity trends  
-- *Missions* – Self-defined goals with tracked completion  
-- *Coffer* – Manually track your finances  
-- *Almanack* – Define your chief aim and personal commandments  
-
----
-
-## Quickstart
-
-```bash
-git clone https://github.com/2kdarki/habitrax.git
-cd habitrax
-python run.py
-```
-
-
-> Requires Python 3.10+ installed.
-
----
-
-## Why Terminal?
-
-- Built entirely on a smartphone as a *learning project*
-- No external dependencies or frameworks
-- Made for speed, clarity, and minimalism
-- Focus is on function, not flash — every feature serves personal growth
-
----
-
-## Tech Stack
-
-- *Language*: Python  
-- *Libraries*: None (0 dependencies — 100% built-in modules)  
-- *Storage*: JSON  
-- *Interface*: Terminal-based, menu-driven  
+- Session Logging – Track tasks, time, focus, and productivity quality
+- Debrief – Daily introspection with randomized deep questions
+- Soul Work – Gratitude, philosophy, and "Slight Edge" voting
+- Status Window – Gamified dashboard for categories and missions
+- Notebook – Store insights, mantras, or journal entries
+- Statistics – Filter and visualize productivity trends
+- Missions – Self-defined goals with tracked completion
+- Coffer – Manually track your finances
+- Almanack – Define your chief aim and personal commandments
 
 ---
 
 ## Folder Structure
-
 ```
-habitrax/
-├── src/
-│   └── habitrax/          ← App source code
-├── data/                  ← Stored user data (JSON)
-├── pyproject.toml         ← Packaging configuration
-├── requirements.txt       ← (empty)
-├── run.py                 ← Entry point script
-├── README.md              ← You are here
-├── LICENSE
-└── .gitignore
+Habitrax/ 
+        ├── src/ 
+        │   └── habitrax/    ← App source code
+        ├── data/            ← Stored user data (JSON) 
+        ├── pyproject.toml   ← Packaging configuration 
+        ├── requirements.txt ← Empty (0 dependencies) 
+        ├── run.py           ← Entry point 
+        ├── README.md        ← You are here
+        ├── LICENSE 
+        └── .gitignore 
 ```
 
 ---
 
-## Use Cases
+## Contributing
 
-- Replace messy journals or habit trackers  
-- Build focus using reflection & tracked progress  
-- Gamify your purpose and goals  
-- Boost self-awareness with shadow work and reflection sessions  
-- Track progress toward your own "missions"
+Want to improve Habitrax? Here's how:
+- Fork the repo
+- Create a branch: git checkout -b feat/my-feature or git checkout -b fix/bug
+- Make your changes in src/habitrax/ or data/
+- Stage and commit: git add . git commit -m "Short, clear message describing your change" 
+- Push your branch: git push origin feat/my-feature
+- Open a Pull Request — describe your change clearly
+- Optional: add a minimal test in tests/
+
+---
+
+## Realistic First Tasks
+Even if you've never seen the code before, here are 3 tasks anyone can try:
+- Improve Debrief Randomization – Add optional filters for categories or difficulty of questions
+- Add a CLI Shortcut – For example, a quick command to show today's top task
+
+These tasks are small, self-contained, and won't break the core functionality.
 
 ---
 
 ## Data & Privacy
 
-- All user data is stored *locally* in JSON files  
-- You can back up or migrate manually  
-- Future versions may support encryption or SQLite  
+- All user data is stored locally in JSON files
+- You can back up or migrate manually
+- Future versions may support encryption or SQLite (if you can, you may work on this)
 
 ---
 
 ## Limitations
 
-- Not beginner-friendly (no undo or in-app editing — by design)  
-- Requires basic terminal use (`ls`, `cd`, `python run.py`)  
-- Built for personal use — but shared for others who resonate  
-- No automated tests (manual testing only)  
+- Minimal CLI interface — designed for speed and simplicity
+- No undo or in-app editing (by design)
+- Manual testing only — no automated tests yet
 
 ---
 
 ## License
 
-*MIT License*  
-Free to use, modify, or build upon.  
-If you publish or monetize your version, a mention is appreciated.
-
----
-
-## Contributions
-
-Originally built for personal growth.  
-If you're a dev, feel free to fork it, improve it, or adapt it to your workflow.
+MIT License — Free to use, modify, or build upon. Mention appreciated if published or monetized.
 
 ---
 
 ## About the Author
 
-A self-taught dev addicted to programming and philosophy.  
-Built this not just to be productive — but to master the self.
+Self-taught dev passionate about programming and philosophy. Built this to not just track productivity — but to master the self.
