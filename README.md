@@ -1,3 +1,6 @@
+![GitHub forks](https://img.shields.io/github/forks/2kDarki/Habitrax?style=social)
+![GitHub stars](https://img.shields.io/github/stars/2kDarki/Habitrax?style=social)
+
 # Habitrax
 
 *A terminal-based personal development tracker combining habit building, productivity, and introspection into one unified system.*
