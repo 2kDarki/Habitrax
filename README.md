@@ -54,7 +54,7 @@ That's it — Habitrax runs out-of-the-box.
 ```
 Habitrax/ 
         ├── src/ 
-        │   └── habitrax/    ← App source code
+            └── habitrax/    ← App source code
         ├── data/            ← Stored user data (JSON) 
         ├── pyproject.toml   ← Packaging configuration 
         ├── requirements.txt ← Empty (0 dependencies) 
@@ -63,29 +63,7 @@ Habitrax/
         ├── LICENSE 
         └── .gitignore 
 ```
-
----
-
-## Contributing
-
-Want to improve Habitrax? Here's how:
-- Fork the repo
-- Create a branch: git checkout -b feat/my-feature or git checkout -b fix/bug
-- Make your changes in src/habitrax/ or data/
-- Stage and commit: git add . git commit -m "Short, clear message describing your change" 
-- Push your branch: git push origin feat/my-feature
-- Open a Pull Request — describe your change clearly
-- Optional: add a minimal test in tests/
-
----
-
-## Realistic First Tasks
-Even if you've never seen the code before, here are 3 tasks anyone can try:
-- Improve Debrief Randomization – Add optional filters for categories or difficulty of questions
-- Add a CLI Shortcut – For example, a quick command to show today's top task
-
-These tasks are small, self-contained, and won't break the core functionality.
-
+ 
 ---
 
 ## Data & Privacy
@@ -113,3 +91,49 @@ MIT License — Free to use, modify, or build upon. Mention appreciated if publi
 ## About the Author
 
 Self-taught dev passionate about programming and philosophy. Built this to not just track productivity — but to master the self.
+
+
+# Contributing to Habitrax 
+
+Thank you for considering contributing! Here's a simple workflow: 
+
+## Getting Started 
+
+1. Fork the repo 
+2. Clone your fork: 
+```bash
+git clone https://github.com/YOUR_USERNAME/Habitrax.git cd Habitrax
+```
+
+- Create a branch for your changes: git checkout -b feat/my-feature 
+- Make your changes (code, data, formatting)
+- Stage and commit: git add . 
+  - git commit -m "Clear, short description" 
+- Push your branch: git push origin feat/my-feature 
+- Open a Pull Request (PR) on GitHub — describe your change clearly
+- Optional: add a minimal test in tests/
+
+--- 
+
+## Code Style
+- Keep naming consistent with existing files
+- Minimal formatting: PEP8 recommended, but readability matters most
+- Comments welcome for clarity
+
+---
+
+## Testing
+
+- There's no automated testing yet
+- Please run python run.py to make sure your changes don't break the app
+
+---
+
+## Suggested First Contributions
+
+Even if you've never seen the code before, here are 2 tasks anyone can try:
+- Improve Debrief Randomization – Add optional filters for categories or difficulty of questions
+- Add a CLI Shortcut – For example, a quick command to show today's top task
+
+These tasks are small, self-contained, and won't break the core functionality.
+
