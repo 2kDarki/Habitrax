@@ -99,6 +99,19 @@ Habitrax/
  
 ---
 
+## Screenshots 
+
+1. Status Window
+ 
+2. Soul Work module
+ 
+3. Debrief questions
+ 
+4. Task logging view 
+ 
+
+---
+
 ## Data & Privacy
 
 - All user data is stored locally in JSON files
