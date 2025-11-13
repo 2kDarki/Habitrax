@@ -102,13 +102,13 @@ Habitrax/
 ## Screenshots 
 
 1. Status Window
- 
+![Status Window](./screenshots/status-window.png)
 2. Soul Work module
- 
+![Soul Work module](./screenshots/soul-work.png) 
 3. Debrief questions
- 
+![Debrief questions](./screenshots/debrief-questions.png) 
 4. Task logging view 
- 
+![Task logging view](./screenshots/task-logging.png) 
 
 ---
 
