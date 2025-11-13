@@ -1,0 +1,49 @@
+from src.habitrax import logger, status_window, debrief
+from src.habitrax import stats, soul_work, toolbox
+from src.habitrax.main import main as menu
+import argparse
+
+def parse_args():
+    parser         = argparse.ArgumentParser(description=
+                     toolbox.help_msg())
+    subparsers     = parser.add_subparsers(dest="command")
+    session        = subparsers.add_parser("log")
+    view           = subparsers.add_parser("view")
+    bank           = subparsers.add_parser("coffer")
+    
+    comparsers = {
+       "adders": [session.add_argument, view.add_argument,
+                  bank.add_argument],
+       "cargs": [[["-t", "--task"], ["-r", "--reflect"], 
+                ["-s", "--shadow"]], 
+                [["-d", "--debrief"], ["-w", "--status"],
+                ["-s", "--stats"], ["-b", "--balance"], 
+                ["-t", "--transactions"]], 
+                [["-d", "--deposit"], ["-w", "--withdraw"]]]
+    }
+    
+    adders, cargs = comparsers["adders"],comparsers["cargs"]
+    for add_arg, args in zip(adders, cargs):
+        for arg in args:
+            short, long = arg
+            add_arg(short, long, action="store_true")
+    
+    return parser.parse_args()
+
+if __name__ == "__main__": 
+    args = parse_args()
+    if not args.command: menu()
+    
+    if args.command == "log":
+        if args.reflect: debrief.reflect(True)
+        elif  args.task: logger.log_session(True)
+        else           : debrief.shadow_journal(True)
+    elif args.command == "view":
+        if   args.debrief: debrief.debrief_review(0, 1)
+        elif  args.status: status_window.window(True)
+        elif   args.stats: stats.menu(True)
+        elif args.balance: soul_work.coffer(view=0)
+        else             : soul_work.coffer(view=1)
+    else:
+        if args.withdraw: soul_work.coffer(cashflow=0)
+        else            : soul_work.coffer(cashflow=1)
