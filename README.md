@@ -12,11 +12,11 @@ Habitrax is a CLI app designed to help you:
 - Reflect daily with randomized deep questions 
 - Monitor progress using gamified stats and leveling 
 - Build powerful habits using philosophies from: 
- - Deep Work
- - Atomic Habits
- - Slight Edge
- - Think & Grow Rich
- - Shadow Work Journal 
+  - Deep Work
+  - Atomic Habits
+  - Slight Edge
+  - Think & Grow Rich
+  - Shadow Work Journal 
 
 > You don't just live life — you *level through it*. 
 
@@ -24,15 +24,26 @@ Habitrax is a CLI app designed to help you:
 
 ## Quickstart
 
-```
+```bash
 git clone https://github.com/2kDarki/Habitrax.git 
 cd Habitrax 
 python run.py
 ```
 
-> Requires Python 3.10+. 
+> Requires Python 3.10+ installed. 
 
 That's it — Habitrax runs out-of-the-box.
+
+---
+
+## Philosophy
+
+Most productivity apps force structure on you.  
+Habitrax does the opposite — it's a *sandbox for your goals, actions, and reflections.*
+
+- Every decision is a vote toward your future self  
+- Every session is data, analyzed and visualized for self-awareness  
+- You define your purpose, rules, and trajectory  
 
 ---
 
@@ -50,7 +61,26 @@ That's it — Habitrax runs out-of-the-box.
 
 ---
 
+## Why Terminal?
+
+- Built entirely on a smartphone as a *learning project*
+- No external dependencies or frameworks
+- Made for speed, clarity, and minimalism
+- Focus is on function, not flash — every feature serves personal growth
+
+---
+
+## Tech Stack
+
+- Language: Python  
+- Libraries: None (0 dependencies — 100% built-in modules)  
+- Storage: JSON 
+- Interface: Terminal-based, menu-driven  
+
+---
+
 ## Folder Structure
+
 ```
 Habitrax/ 
         ├── src/ 
@@ -107,7 +137,8 @@ git clone https://github.com/YOUR_USERNAME/Habitrax.git cd Habitrax
 
 - Create a branch for your changes: git checkout -b feat/my-feature 
 - Make your changes (code, data, formatting)
-- Stage and commit: git add . 
+- Stage and commit: 
+  - git add . 
   - git commit -m "Clear, short description" 
 - Push your branch: git push origin feat/my-feature 
 - Open a Pull Request (PR) on GitHub — describe your change clearly
