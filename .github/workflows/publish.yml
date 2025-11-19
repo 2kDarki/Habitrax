@@ -29,20 +29,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip build
           python -m build --wheel --sdist
-
-      # Option A: Preferred if you've registered a Trusted Publisher on PyPI.
-      # This will use GitHub's OIDC token (no secret required). The step runs
-      # only when the repository has been set as a trusted publisher for the project.
+      
       - name: Publish to PyPI via Trusted Publisher (OIDC)
-        if: ${{ secrets.PYPI_API_TOKEN == '' }}
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages_dir: dist
 
-      # Option B: Classic API token method — provide a PYPI_API_TOKEN secret.
-      - name: Publish to PyPI via API token
-        if: ${{ secrets.PYPI_API_TOKEN != '' }}
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          packages_dir: dist
