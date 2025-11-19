@@ -1,37 +1,36 @@
 name: Publish to PyPI
 
-# Trigger workflow on tags like v0.1.0, v1.2.3, etc.
 on:
   push:
     tags:
       - 'v*'
+
+permissions:
+  contents: read   # required for checkout
+  id-token: write  # required for Trusted Publisher / OIDC
 
 jobs:
   build-and-publish:
     name: Build and publish
     runs-on: ubuntu-latest
     environment:
-      name: pypi   # Must match the PyPI environment you configured
+      name: pypi
 
     steps:
-      # Step 1: Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Python
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'   # Adjust if needed
+          python-version: '3.11'
 
-      # Step 3: Install build tools and build the package
       - name: Build wheel and sdist
         run: |
           python -m pip install --upgrade pip build
           python -m build --wheel --sdist
 
-      # Step 4: Publish to PyPI via Trusted Publisher (OIDC)
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages_dir: dist
+          packages-dir: dist   # use kebab-case now
