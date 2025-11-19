@@ -1,0 +1,20 @@
+[project]
+name = "Habitrax"
+version = "0.2.1"
+description = "A terminal-based productivity and life-tracking system."
+authors = [{ name = "Caleb 'Darki' Sibanda", email = "darkian.dev@gmail.com" }]
+readme = "README.md"
+license = { text = "MIT"}
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+habitrax = "hbx.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["data", "hbx"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
