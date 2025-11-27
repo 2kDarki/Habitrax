@@ -1,0 +1,39 @@
+[project]
+name = "Habitrax"
+version = "0.3.0"
+description = "A terminal-based productivity and life-tracking system."
+readme = "README.md"
+authors = [{ name = "Caleb 'Darki' Sibanda", email = "darkian.dev@gmail.com" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+#dependencies = ["tuikit>=0.1.0,<0.2.0"]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Utilities",
+    "Topic :: Productivity"
+]
+
+keywords = [
+    "cli", "tracker", "productivity", 
+    "habits", "terminal", "self-improvement"
+]
+
+[project.scripts]
+habitrax = "hbx.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/2kDarki/Habitrax"
+Repository = "https://github.com/2kDarki/Habitrax"
+Issues = "https://github.com/2kDarki/Habitrax/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["data", "hbx"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
