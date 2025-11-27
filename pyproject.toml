@@ -6,7 +6,11 @@ readme = "README.md"
 authors = [{ name = "Caleb 'Darki' Sibanda", email = "darkian.dev@gmail.com" }]
 license = { file = "LICENSE" }
 requires-python = ">=3.10"
+<<<<<<< HEAD
 #dependencies = ["tuikit>=0.1.0,<0.2.0"]
+=======
+dependencies = ["tuikit>=0.1.0,<0.2.0"]
+>>>>>>> 5bbc1bc (Added the json to sql migration functionality and some other enhancements)
 
 classifiers = [
     "Programming Language :: Python :: 3",
