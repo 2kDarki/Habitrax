@@ -14,8 +14,9 @@ def user_exists():
             if len(list(f)) > 1: return True
 
 def commandments():
-    print(color("\nEnter commandments one by one.\n"
-         +"Type 'done' when finished:\n", "yellow"))
+    msg = "Enter commandments one by one."
+        + "Type 'done' when finished:\n"
+    print(color(wrap_text(msg), 'yellow'))
     
     decalogue = []
     while True:
