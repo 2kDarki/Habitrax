@@ -1,6 +1,6 @@
 from .toolbox import clear, color, center, underline
 from .toolbox import warning, timetools, iter_print
-from .toolbox import wrap_text
+from .toolbox import wrap_text, help_msg
 from . import storage
 import time
 import sys
@@ -31,20 +31,21 @@ def commandments():
 
 def setup_user():
     print("\n"+center(" 《 HABITRAX SETUP 》 ", "="))
-    welcome = f"Welcome! Let's get a few details to "
-    welcome += f"personalize your experience."    
+    welcome = f"Welcome! Let's get a few details to " \
+            + f"personalize your experience."    
     print(f"\n{wrap_text(welcome)}\n")
 
     user_data = {}
     user_data["Name"] = input(color(
         "Your name or nickname: ", "cyan")).strip()
     
-    name = user_data.get("Name", None)
+    name = user_data.get("Name", "Anonymous")
     while True:
         try: 
+            birthday = input(color("Your birthday (YYYY"
+                     + "-MM-DD): ", "cyan")).strip()
             user_data["Birthday"] = timetools.to_iso(
-            input(color("Your birthday (YYYY-MM-DD): ", 
-            "cyan")).strip())
+                                    birthday)
             if user_data["Birthday"] is None:
                 raise ValueError
             break
@@ -76,10 +77,11 @@ def setup_user():
 
 if __name__ != "__main__": 
     if not user_exists():
+        if len(sys.argv) > 1: help_msg(True, True)
         try: setup_user()
         except (KeyboardInterrupt, EOFError) as e:
             if isinstance(e, EOFError): print()
-            warning("Setup cancelled by user.")
+            warning("Setup cancelled by user.", True)
             underline()
             time.sleep(1)
             clear(print_header=False)

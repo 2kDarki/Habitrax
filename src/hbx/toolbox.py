@@ -1,13 +1,15 @@
-from tuikit.textools import iter_print, label, strip_ansi
 from tuikit.logictools import make_progress_bar, rated_bar
 from tuikit.logictools import copy, visual_width, not_all
-from tuikit.exceptions import warning, empty as no_data
+from tuikit.textools import pluralize, style_text, label
 from tuikit.listools import list_items as list_options
 from tuikit.textools import pad_args as format_number
 from tuikit.logictools import _wrap_text as wrap_text
+from tuikit.textools import iter_print, strip_ansi
 from tuikit.console import spacer, clear as _clear
 from tuikit.console import underline as _underline
-from tuikit.textools import pluralize, style_text
+from tuikit.textools import transmit as _transmit
+from tuikit.exceptions import warning as _warning
+from tuikit.exceptions import empty as no_data
 from tuikit.listools import choose as _choose
 from tuikit import timetools as tt
 from typing import Callable
@@ -50,7 +52,10 @@ def print_help(at: int = 0, option: str | None = None):
         print("Withdraw: use -w or --withdraw")
     print()
 
-def help_msg(found: bool = False):
+def help_msg(found:bool = False, setup:bool = False):
+    try:
+        if "--setup" == sys.argv[1]: return
+    except IndexError: pass
     args = {
         "log": ["-t", "--task", "-r", "--reflect", "-s",
                "--shadow"],
@@ -63,18 +68,28 @@ def help_msg(found: bool = False):
     header   = center("《 HABITRAX HELP 》", line="—")
     h        = ["-h", "--h","-help", "--help"]
     commands = ["log", "view", "coffer"]
+    cta      = "I see you haven't completed your " \
+             + "setup yet. Use entry point without"\
+             + " a command and/or with option --setup" \
+             + " to complete setup."
+    
     if len(sys.argv) == 2:
         if sys.argv[1] in commands: return
     elif len(sys.argv) > 2:
         for i, command in enumerate(commands):
             if command == sys.argv[1]:
                 arg = sys.argv[2]
-                if arg in args[command]: return
+                if arg in args[command] and not setup:
+                    return
                 print(f"\n{header}")
                 print_help(i, None if arg in h else arg)
+                if setup:
+                    _transmit(cta, speed=0.075,
+                               hold=0.075,hue='red')
+                    print()
                 underline()
                 print()
-                exit()
+                sys.exit(0)
 
     for arg in h:
         if arg in sys.argv: found = True
@@ -99,6 +114,9 @@ def help_msg(found: bool = False):
     print("      coffer               Personal bank\n")
     print(wrap_text(color(cta_for_info, 'yellow')))
     print()
+    if setup:
+        _transmit(cta, speed=0.075, hold=0.075, hue='red')
+        print()
 
     underline()
     print()
@@ -182,13 +200,19 @@ Takes a dictionary and a numeric index
 Returns the corresponding value
     """
     return next((dictionary[opt] for pos, opt in 
-        enumerate(dictionary) if pos == int(index)))
+           enumerate(dictionary) if pos == int(index)))
 
 def clear(print_header:bool=True, terminate:bool=False):
     _clear()
     if terminate: exit()
     if not print_header: return
     _clear(center("《 QUESTLINE 》", line="="))
+
+def warning(msg, transmit=False):
+    if not transmit: _warning(msg)
+    print()
+    _transmit(msg, hue="yellow")
+    print()
 
 def color(text,fg: str|None = None, bg: str|None = None,
           bold:bool = False, underule:bool = False) -> str:

@@ -1,3 +1,3 @@
-from src.hbx.__main__ import main
+from src.hbx import __main__
 
-if __name__ == "__main__": main()
+if __name__ == "__main__": __main__.main()
