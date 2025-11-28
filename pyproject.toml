@@ -34,7 +34,7 @@ Issues = "https://github.com/2kDarki/Habitrax/issues"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-packages = ["hbx/data", "hbx"]
+packages = ["hbx.data", "hbx"]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
