@@ -1,6 +1,6 @@
 [project]
 name = "Habitrax"
-version = "0.3.3"
+version = "0.3.4"
 description = "A terminal-based productivity and life-tracking system."
 readme = "README.md"
 authors = [{ name = "Caleb 'Darki' Sibanda", email = "darkian.dev@gmail.com" }]
@@ -32,10 +32,24 @@ Homepage = "https://github.com/2kDarki/Habitrax"
 Repository = "https://github.com/2kDarki/Habitrax"
 Issues = "https://github.com/2kDarki/Habitrax/issues"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["hbx.data", "hbx"]
-
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=61.0", "wheel", "setuptools_scm"]
 build-backend = "setuptools.build_meta"
+
+# ----------------------------
+# setuptools-specific settings
+# ----------------------------
+[tool.setuptools]
+# tell setuptools where packages live
+package-dir = {"" = "src"}
+# include package data according to package-data mapping below
+include-package-data = true
+
+# use find to discover packages automatically
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["tests*"]
+
+# explicit package-data mapping: include all JSON files in hbx/data
+[tool.setuptools.package-data]
+"hbx" = ["data/*.json"]

@@ -15,8 +15,8 @@ def user_exists():
 
 def commandments():
     msg = "Enter commandments one by one." \
-        + "Type 'done' when finished:\n"
-    print(color(wrap_text(msg), 'yellow'))
+        + "Type 'done' when finished:"
+    print("\n"+color(wrap_text(msg), 'yellow'), "\n")
     
     decalogue = []
     while True:
