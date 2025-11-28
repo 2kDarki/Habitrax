@@ -14,7 +14,7 @@ def user_exists():
             if len(list(f)) > 1: return True
 
 def commandments():
-    msg = "Enter commandments one by one."
+    msg = "Enter commandments one by one." \
         + "Type 'done' when finished:\n"
     print(color(wrap_text(msg), 'yellow'))
     

@@ -1,6 +1,6 @@
 [project]
 name = "Habitrax"
-version = "0.3.2"
+version = "0.3.3"
 description = "A terminal-based productivity and life-tracking system."
 readme = "README.md"
 authors = [{ name = "Caleb 'Darki' Sibanda", email = "darkian.dev@gmail.com" }]
