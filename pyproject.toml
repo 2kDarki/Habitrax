@@ -9,7 +9,7 @@ requires-python = ">=3.10"
 dependencies = ["tuikit>=0.1.2,<0.2.0"]
 
 classifiers = [
-  "Development Status :: 5 - Stable/Production",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Intended Audience :: End Users/Desktop",
   "License :: OSI Approved :: MIT License",
