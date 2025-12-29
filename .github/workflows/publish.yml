@@ -1,14 +1,13 @@
 name: Publish to PyPI
 
-# trigger on pushed tags like "v1.2.3"
 on:
   push:
     tags:
       - 'v*'
 
 permissions:
-  contents: read        # required for checkout
-  id-token: write       # required for OIDC / Trusted Publisher
+  contents: read   # required for checkout
+  id-token: write  # required for Trusted Publisher / OIDC
 
 jobs:
   build-and-publish:
@@ -16,33 +15,22 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
+
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'   # adjust if needed
+          python-version: '3.11'
 
-      - name: Install build backend and build wheel/sdist
+      - name: Build wheel and sdist
         run: |
           python -m pip install --upgrade pip build
           python -m build --wheel --sdist
 
-      # Option A: Preferred if you've registered a Trusted Publisher on PyPI.
-      # This will use GitHub's OIDC token (no secret required). The step runs
-      # only when the repository has been set as a trusted publisher for the project.
-      - name: Publish to PyPI via Trusted Publisher (OIDC)
-        if: ${{ secrets.PYPI_API_TOKEN == '' }}
+      - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages_dir: dist
-
-      # Option B: Classic API token method — provide a PYPI_API_TOKEN secret.
-      - name: Publish to PyPI via API token
-        if: ${{ secrets.PYPI_API_TOKEN != '' }}
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          packages_dir: dist
+          packages-dir: dist   # use kebab-case now
