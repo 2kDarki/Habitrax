@@ -2,8 +2,9 @@
 Entry point of the Questline CLI application (Habitrax)
 Displays the main menu and routes to each core module
 """
-from .toolbox import warning, choose_from, list_options
+from .toolbox import warning, choose_from, list_options, choose
 from .toolbox import center, color, clear, underline
+from .toolbox import console, Panel, print_animated
 from . import status_window
 from . import soul_work
 from . import notebook
@@ -14,44 +15,33 @@ from . import logger
 from . import setup
 from . import stats
 from . import tasks
+from . import goggins
 
 def main():
-    header = center("《 QUESTLINE 》", line="=")
-    print(header)
+    header = center("《 QUESTLINE 》", line="=", style="bold green")
+    print_animated(header, delay=0.005)
     
     options = {       
                "Log session": logger.log_session  ,
             "Mission center": tasks.menu          ,
                    "Debrief": debrief.menu        ,
                  "Soul work": soul_work.menu      ,
+     "Goggins Accountability": goggins.menu        ,
         "View Status Window": status_window.window,
                 "Statistics": stats.menu          ,        
                   "Notebook": notebook.menu       ,
                    "Profile": profile.menu        ,
-                  "Settings": config.menu
+                  "Settings": config.menu,
+                   "Exit": lambda: clear(terminate=True)
     }
-    
-    all_opt = str(len(options) + 1)
     while True:
         print()
-        list_options(options, "Choose action")
-        print(f"{all_opt}. Exit")
+        # Use Rich Panel for the menu
+        menu_text = ""
+        for i, opt in enumerate(options):
+            style = "cyan" if opt != "Exit" else "red"
+            menu_text += f"[bold magenta]{i+1}.[/] [{style}]{opt}[/]\n"
+
+        console.print(Panel(menu_text.strip(), title="[bold green]Main Menu[/]", border_style="green"))
         
-        try: opt = input(color(">>> ", "magenta"))
-        except (EOFError, KeyboardInterrupt): 
-            opt = all_opt
-        try:
-            # Convert user input to index, call the 
-            # associated function
-            choice = int(opt) - 1
-            choose_from(options, choice)()
-        except (ValueError, StopIteration):
-            # Special command to clear screen
-            if opt == "clear": clear()
-            # Exit condition
-            elif opt == all_opt: clear(terminate=True)
-            # Invalid input handling
-            else: print(warning("\nInvalid choice. "
-                       +f"Choose from 1 to {all_opt}.", 
-                       inline=True))
-            continue
+        choose(options, src=main)

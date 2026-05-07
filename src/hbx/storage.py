@@ -18,6 +18,9 @@ SLIGHT_EDGE = 'slight_edge.json'
 SERVICES    = 'services_ledger.json'
 GRACES      = 'gratitudes.json'
 COFFER      = 'coffer.json'
+GOGGINS_MIRROR = 'goggins_mirror.json'
+GOGGINS_COOKIE_JAR = 'goggins_cookie_jar.json'
+AI_CONFIG = 'ai_config.json'
 
 # Load stats map
 def load_map() -> dict:

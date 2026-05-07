@@ -9,7 +9,7 @@ from .toolbox import choose_from, strip_ansi, no_data
 from .toolbox import choose, list_options, underline
 from .toolbox import wrap_text as wrap, center as c
 from .toolbox import warning, label, variables
-from .toolbox import color, timetools
+from .toolbox import color, timetools, console, Panel
 from .slight_edge import ballot
 from datetime import datetime
 from time import time
@@ -53,6 +53,7 @@ Reflect deeply from a series of 5 to 10 questions per session
     
     count    = random.randint(5, 10)
     selected = random.sample(pool, count)
+    qa_pairs = []
 
     try:
       for n, item in enumerate(selected):
@@ -61,6 +62,7 @@ Reflect deeply from a series of 5 to 10 questions per session
          print(wrap(f"Q{n+1}. {item['question']}", i))
          reply     = input(color(">>> ", "magenta"))
          timestamp = datetime.now().isoformat()
+         qa_pairs.append({"q": item["question"], "a": reply})
         
          # Save each reflection as a separate entry
          reflection = {
@@ -115,6 +117,20 @@ Reflect deeply from a series of 5 to 10 questions per session
     level.Stat("Meditation").level_up()
     done = c(" ✔ Reflection Logged Successfuly! ","—")
     print(f"\n{done}")
+
+    # AI Feedback Integration
+    from . import ai_accountability
+    ai_config = storage.load_data(storage.AI_CONFIG)
+    if ai_config and ai_config.get("api_key"):
+        console.print("\n[bold yellow]Requesting AI Accountability Feedback...[/]")
+        # Prepare context for AI
+        context = "User's daily reflection answers:\n"
+        for pair in qa_pairs:
+            context += f"Q: {pair['q']}\nA: {pair['a']}\n"
+
+        feedback = ai_accountability.get_ai_feedback(context)
+        console.print(Panel(feedback, title="[bold red]GOGGINS AI FEEDBACK[/]", border_style="red"))
+
     if from_term: print()
 
 def shadow_journal(from_term: bool = False):
