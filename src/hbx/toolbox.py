@@ -14,10 +14,39 @@ from tuikit.listools import choose as _choose
 from tuikit import timetools as tt
 from typing import Callable
 from . import storage
+from rich.console import Console
+from rich.panel import Panel
+from rich.text import Text
+from rich.theme import Theme
+from rich.live import Live
 import shutil
 import random
 import time
 import sys
+
+# Initialize Rich Console
+custom_theme = Theme({
+    "info": "cyan",
+    "warning": "yellow",
+    "error": "red",
+    "success": "green",
+    "goal": "magenta",
+    "header": "bold green",
+    "mission": "bold bright_cyan"
+})
+console = Console(theme=custom_theme)
+
+def print_animated(text: str, delay: float = 0.01, style: str = ""):
+    """Prints text with a typing animation effect."""
+    if not text:
+        return
+
+    with Live(Text("", style=style), console=console, refresh_per_second=20) as live:
+        full_text = ""
+        for char in text:
+            full_text += char
+            live.update(Text(full_text, style=style))
+            time.sleep(delay)
 
 def lvl_up_msg(cat):
     msg, cap = "", ""
@@ -214,18 +243,31 @@ def warning(msg, inline=False, transmit=False):
     _transmit(msg, hue="yellow")
     print()
 
-def color(text,fg: str|None = None, bg: str|None = None,
-          bold:bool = False, underule:bool = False) -> str:
-    return style_text(text, fg, bg, bold, bool(underule))   
- 
+def color(text, fg: str|None = None, bg: str|None = None,
+          bold:bool = False, underline:bool = False) -> str:
+    """Returns styled text using Rich. For compatibility, it returns ANSI string."""
+    style = ""
+    if fg: style += fg
+    if bg: style += f" on {bg}"
+    if bold: style += " bold"
+    if underline: style += " underline"
+
+    t = Text.from_ansi(text) if "\x1b[" in text else Text(text)
+    t.stylize(style)
+
+    with console.capture() as capture:
+        console.print(t, end="")
+    return capture.get()
+
 def number_padding(num: int, pad: int = 3) -> str:
     return str(num).rjust(pad)
         
 def center(text: str, line: str | None = None, 
-           get: bool = False, fixed: int | None = None):
+           get: bool = False, fixed: int | None = None,
+           style: str = "green"):
     term_width = shutil.get_terminal_size((80, 
         20)).columns
-    display_len = visual_width(text)
+    display_len = visual_width(strip_ansi(text))
     
     # Centers stats in status window
     if fixed: display_len = fixed
@@ -241,8 +283,8 @@ def center(text: str, line: str | None = None,
     if get: return left_pad, total_pad, right_pad
 
     if line:
-        line_color = "magenta" if line == "—" else "green"
-        text_color = "magenta" if line != "—" else "green"
+        line_color = "magenta" if line == "—" else style
+        text_color = "magenta" if line != "—" else style
         left   = color(line *  left_pad, line_color)   
         right  = color(line * right_pad, line_color)
         middle = color(text, fg=text_color)
@@ -250,7 +292,9 @@ def center(text: str, line: str | None = None,
         
     return " " * left_pad + text
 
-def underline() -> None: _underline(hue="magenta")
+def underline(style: str = "magenta") -> None:
+    term_width = shutil.get_terminal_size((80, 20)).columns
+    console.print("—" * term_width, style=style)
     
 def variance(new: int | float | None, 
              old: int | float | None) -> int | float:
